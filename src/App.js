@@ -45,11 +45,14 @@ class App extends Component {
   }
 
   sellCar( id ) {
-    axios.delete(`https://joes-autos.herokuapp.com/api/vehicles/${ id }`).then( results => {
-      toast.success("Successfully sold car.");
-      this.setState({ 'vehiclesToDisplay': results.data.vehicles });
-    }).catch( () => toast.error("Failed at selling car.") );
-  }
+    axios.delete(`${baseUrl}/vehicles${id}`)
+    .then(response => {
+      toast.success(`Sold successfully!`)
+      this.setState({
+        vehiclesToDisplay: response.data.vehicles
+      })
+    })
+
 
   filterByMake() {
     let make = this.selectedMake.value;
